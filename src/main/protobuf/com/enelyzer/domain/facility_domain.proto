@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package com.enelyzer.facility.domain;
+
+message FacilityState {
+  string name = 1;
+  FacilityType facility_type = 2;
+  Address address = 3;
+  Owner owner = 4;
+  GeoLocation geo = 5;
+  repeated Building buildings = 6;
+  Info info = 7;
+  repeated ImageMap image_maps = 8;
+}
+
+message Address {
+  string addressLine1 = 1;
+  string addressLine2 = 2;
+  string postalCode = 3;
+  string city = 4;
+  string country = 5;
+}
+
+message GeoLocation{
+  double lat = 1;
+  double long = 2;
+  int32 zoom = 3;
+}
+
+message Info {
+  string info = 1;
+}
+
+message Owner {
+  string name = 1;
+  bool rental = 2;
+  string responsible = 3;
+  string yearOfBuild = 4;
+  string from = 5;
+  string to = 6;
+}
+
+// https://developers.google.com/maps/documentation/javascript/geocoding
+message Coordinate {
+  int32 x = 1;
+  int32 y = 2;
+  int32 width = 3;
+  int32 height = 4;
+}
+
+message Image {
+  string id = 1;
+  string name = 2;
+  string uri = 3;
+  ImageType imageType = 4;
+}
+
+message ImageMap {
+  int32 position = 1; //position in the list of images (we need to keep track of the position)
+  Coordinate buildingCoordinates = 2;
+  Image image = 3;
+}
+
+message Building {
+  string id = 1;
+  string name = 2;
+  string buildingType = 3;
+}
+
+enum FacilityType {
+  HQ = 0;
+  PRODUCTION = 1;
+  WAREHOUSE = 2;
+  ADMIN = 3;
+}
+
+enum ImageType {
+  GOOGLE_MAPS = 0;
+  CUSTOM = 1;
+}

@@ -1,0 +1,95 @@
+// This is the public API offered by your entity.
+syntax = "proto3";
+
+//https://developers.google.com/protocol-buffers/docs/reference/google.protobuf
+import "google/protobuf/empty.proto";
+import "akkaserverless/annotations.proto";
+import "google/api/annotations.proto";
+
+package com.enelyzer.shoppingcart;
+
+// gRPC Requests for FacilityService
+message GetRequest {
+  string id = 1 [(akkaserverless.field).entity_key = true];
+}
+
+message UpdateRequest {
+  string id = 1 [(akkaserverless.field).entity_key = true];
+  string name = 2;
+  FacilityType facility_type = 3;
+}
+
+message AddBuildingRequest {
+  string facility_id = 1 [(akkaserverless.field).entity_key = true];
+  string building_id = 2;
+}
+
+message RemoveBuildingRequest {
+  string facility_id = 1 [(akkaserverless.field).entity_key = true];
+  string building_id = 2;
+}
+
+message UpdateOwnerRequest {
+  string id = 1 [(akkaserverless.field).entity_key = true];
+  bool rental = 2;
+  string responsible = 3;
+  string yearOfBuild = 4;
+  string from = 5;
+  string to = 6;
+}
+
+message UpdateInfoRequest {
+  string info = 1;
+}
+
+message UpdateAddressRequest {
+  string addressLine1 = 1;
+  string addressLine2 = 2;
+  string postalCode = 3;
+  string city = 4;
+  string country = 5;
+}
+
+enum FacilityType {
+  HQ = 0;
+  PRODUCTION = 1;
+  WAREHOUSE = 2;
+  ADMIN = 3;
+}
+
+// gRPC Responses
+//message FacilitiesResponse {
+//  repeated FacilityResponse facilities = 1;
+//}
+
+message FacilityResponse {
+  string id = 1;
+  string name = 2;
+  repeated BuildingResponse buildings = 3;
+}
+
+message BuildingResponse {
+  string id = 1;
+  string name = 2;
+  string buildingType = 3;
+}
+
+// gRPC API
+service FacilityService {
+  option (akkaserverless.codegen) = {
+    value_entity: {
+      name: "com.enelyzer.facility.domain.Facility"
+      entity_type: "facility"
+      state: "com.enelyzer.facility.domain.FacilityState"
+    }
+  };
+
+  rpc UpdateFacility (UpdateRequest) returns (google.protobuf.Empty) {}
+  rpc UpdateOwner (UpdateOwnerRequest) returns (google.protobuf.Empty) {}
+  rpc UpdateInfo (UpdateInfoRequest) returns (google.protobuf.Empty) {}
+  rpc UpdateAddress (UpdateAddressRequest) returns (google.protobuf.Empty) {}
+  rpc AddBuilding (AddBuildingRequest) returns (google.protobuf.Empty) {}
+  rpc RemoveBuilding (RemoveBuildingRequest) returns (google.protobuf.Empty) {}
+  rpc Get (GetRequest) returns (FacilityResponse) {}
+  //rpc GetAll (google.protobuf.Empty) returns (FacilitiesResponse) {}
+}
