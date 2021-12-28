@@ -83,6 +83,17 @@ through the `akkasls` CLI.
 sbt -DonlyUnitTest test
 ```
 
+# Deploy to Akka Serverless cluster
+## Deploy Service
+```
+akkasls services deploy my-service <docker.repo>/my-service:latest
+```
+
+## Expose Route and enable CORS
+```
+akkasls services expose my-service --enable-cors
+```
+
 
 [Enprove-url]: https://enprove.be
 [Enprove-logo]: https://i.imgur.com/9HsQhon.png
