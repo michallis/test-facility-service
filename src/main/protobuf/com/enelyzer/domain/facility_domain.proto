@@ -3,14 +3,17 @@ syntax = "proto3";
 package com.enelyzer.facility.domain;
 
 message FacilityState {
-  string name = 1;
-  FacilityType facility_type = 2;
-  Address address = 3;
-  Owner owner = 4;
-  GeoLocation geo = 5;
-  repeated Building buildings = 6;
-  Info info = 7;
-  repeated ImageMap image_maps = 8;
+  string id = 1;
+  string name = 2;
+  FacilityType facility_type = 3;
+  Address address = 4;
+  Owner owner = 5;
+  GeoLocation geo = 6;
+  repeated Building buildings = 7;
+  Info info = 8;
+  repeated ImageMap image_maps = 9;
+  int64 created = 10;
+  int64 updated = 11;
 }
 
 message Address {

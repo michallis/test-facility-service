@@ -1,4 +1,4 @@
-package com.enelyzer
+package com.enelyzer.facility
 
 import akka.actor.ActorSystem
 import com.akkaserverless.scalasdk.testkit.AkkaServerlessTestKit
@@ -16,7 +16,7 @@ import org.scalatest.wordspec.AnyWordSpec
 // As long as this file exists it will not be overwritten: you can maintain it yourself,
 // or delete it so it is regenerated as needed.
 
-class CounterServiceIntegrationSpec
+class FacilityServiceIntegrationSpec
     extends AnyWordSpec
     with Matchers
     with BeforeAndAfterAll
@@ -27,9 +27,9 @@ class CounterServiceIntegrationSpec
 
   private val testKit = AkkaServerlessTestKit(Main.createAkkaServerless()).start()
 
-  private val client = testKit.getGrpcClient(classOf[CounterService])
+  private val client = testKit.getGrpcClient(classOf[FacilityService])
 
-  "CounterService" must {
+  "FacilityService" must {
 
     "have example test that can be removed" in {
       // use the gRPC client to send requests to the

@@ -1,4 +1,4 @@
-package com.enelyzer
+package com.enelyzer.facility
 
 import com.akkaserverless.scalasdk.AkkaServerless
 import com.enelyzer.facility.domain.Facility
@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory
 
 object Main {
 
-  private val log = LoggerFactory.getLogger("com.enelyzer.Main")
+  private val log = LoggerFactory.getLogger("com.enelyzer.facility.Main")
 
   def createAkkaServerless(): AkkaServerless = {
     // The AkkaServerlessFactory automatically registers any generated Actions, Views or Entities,

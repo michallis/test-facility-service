@@ -6,11 +6,17 @@ import "google/protobuf/empty.proto";
 import "akkaserverless/annotations.proto";
 import "google/api/annotations.proto";
 
-package com.enelyzer.shoppingcart;
+package com.enelyzer.facility;
 
 // gRPC Requests for FacilityService
+message CreateFacility {
+  string facility_id = 1 [(akkaserverless.field).entity_key = true];
+  string name = 2;
+  FacilityType facility_type = 3;
+}
+
 message GetRequest {
-  string id = 1 [(akkaserverless.field).entity_key = true];
+  string facility_id = 1 [(akkaserverless.field).entity_key = true];
 }
 
 message UpdateRequest {
@@ -39,15 +45,17 @@ message UpdateOwnerRequest {
 }
 
 message UpdateInfoRequest {
-  string info = 1;
+  string id = 1 [(akkaserverless.field).entity_key = true];
+  string info = 2;
 }
 
 message UpdateAddressRequest {
-  string addressLine1 = 1;
-  string addressLine2 = 2;
-  string postalCode = 3;
-  string city = 4;
-  string country = 5;
+  string id = 1 [(akkaserverless.field).entity_key = true];
+  string addressLine1 = 2;
+  string addressLine2 = 3;
+  string postalCode = 4;
+  string city = 5;
+  string country = 6;
 }
 
 enum FacilityType {
@@ -84,6 +92,7 @@ service FacilityService {
     }
   };
 
+  rpc Create (CreateFacility) returns (google.protobuf.Empty) {}
   rpc UpdateFacility (UpdateRequest) returns (google.protobuf.Empty) {}
   rpc UpdateOwner (UpdateOwnerRequest) returns (google.protobuf.Empty) {}
   rpc UpdateInfo (UpdateInfoRequest) returns (google.protobuf.Empty) {}
