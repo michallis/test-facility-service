@@ -1,6 +1,7 @@
 package com.enelyzer.facility
 
 import com.akkaserverless.scalasdk.AkkaServerless
+import com.enelyzer.facility.actions.FacilityActionImpl
 import com.enelyzer.facility.domain.Facility
 import org.slf4j.LoggerFactory
 
@@ -19,7 +20,8 @@ object Main {
     // If you prefer, you may remove this and manually register these components in a
     // `AkkaServerless()` instance.
     AkkaServerlessFactory.withComponents(
-      new Facility(_))
+      new Facility(_),
+      new FacilityActionImpl(_))
   }
 
   def main(args: Array[String]): Unit = {

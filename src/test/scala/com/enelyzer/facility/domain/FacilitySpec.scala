@@ -2,7 +2,7 @@ package com.enelyzer.facility.domain
 
 import com.akkaserverless.scalasdk.testkit.ValueEntityResult
 import com.akkaserverless.scalasdk.valueentity.ValueEntity
-import com.enelyzer.shoppingcart
+import com.enelyzer.facility
 import com.google.protobuf.empty.Empty
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -25,39 +25,44 @@ class FacilitySpec
       // testKit.currentState() shouldBe expectedState
     }
 
+    "handle command Create" in {
+      val testKit = FacilityTestKit(new Facility(_))
+      // val result = testKit.create(facility.CreateFacility(...))
+    }
+
     "handle command UpdateFacility" in {
       val testKit = FacilityTestKit(new Facility(_))
-      // val result = testKit.updateFacility(shoppingcart.UpdateRequest(...))
+      // val result = testKit.updateFacility(facility.UpdateRequest(...))
     }
 
     "handle command UpdateOwner" in {
       val testKit = FacilityTestKit(new Facility(_))
-      // val result = testKit.updateOwner(shoppingcart.UpdateOwnerRequest(...))
+      // val result = testKit.updateOwner(facility.UpdateOwnerRequest(...))
     }
 
     "handle command UpdateInfo" in {
       val testKit = FacilityTestKit(new Facility(_))
-      // val result = testKit.updateInfo(shoppingcart.UpdateInfoRequest(...))
+      // val result = testKit.updateInfo(facility.UpdateInfoRequest(...))
     }
 
     "handle command UpdateAddress" in {
       val testKit = FacilityTestKit(new Facility(_))
-      // val result = testKit.updateAddress(shoppingcart.UpdateAddressRequest(...))
+      // val result = testKit.updateAddress(facility.UpdateAddressRequest(...))
     }
 
     "handle command AddBuilding" in {
       val testKit = FacilityTestKit(new Facility(_))
-      // val result = testKit.addBuilding(shoppingcart.AddBuildingRequest(...))
+      // val result = testKit.addBuilding(facility.AddBuildingRequest(...))
     }
 
     "handle command RemoveBuilding" in {
       val testKit = FacilityTestKit(new Facility(_))
-      // val result = testKit.removeBuilding(shoppingcart.RemoveBuildingRequest(...))
+      // val result = testKit.removeBuilding(facility.RemoveBuildingRequest(...))
     }
 
     "handle command Get" in {
       val testKit = FacilityTestKit(new Facility(_))
-      // val result = testKit.get(shoppingcart.GetRequest(...))
+      // val result = testKit.get(facility.GetRequest(...))
     }
 
   }

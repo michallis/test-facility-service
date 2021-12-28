@@ -1,0 +1,22 @@
+syntax = "proto3";
+package com.enelyzer.facility.actions;
+
+import "google/protobuf/empty.proto";
+import "akkaserverless/annotations.proto";
+import "google/api/annotations.proto";
+
+message FacilityTypesResponse {
+  repeated string facilityTypes = 1;
+}
+
+service FacilityAction {
+  option (akkaserverless.codegen) = {
+    action: {}
+  };
+
+  rpc GetFacilityTypes(google.protobuf.Empty) returns (FacilityTypesResponse) {
+    option (google.api.http) = {
+      get: "/facilities/types"
+    };
+  }
+}
