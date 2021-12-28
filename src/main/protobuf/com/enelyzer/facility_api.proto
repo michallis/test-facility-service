@@ -92,13 +92,22 @@ service FacilityService {
     }
   };
 
-  rpc Create (CreateFacility) returns (google.protobuf.Empty) {}
+  rpc Create (CreateFacility) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/facility/{facility_id}"
+      body: "*"
+    };
+  }
   rpc UpdateFacility (UpdateRequest) returns (google.protobuf.Empty) {}
   rpc UpdateOwner (UpdateOwnerRequest) returns (google.protobuf.Empty) {}
   rpc UpdateInfo (UpdateInfoRequest) returns (google.protobuf.Empty) {}
   rpc UpdateAddress (UpdateAddressRequest) returns (google.protobuf.Empty) {}
   rpc AddBuilding (AddBuildingRequest) returns (google.protobuf.Empty) {}
   rpc RemoveBuilding (RemoveBuildingRequest) returns (google.protobuf.Empty) {}
-  rpc Get (GetRequest) returns (FacilityResponse) {}
+  rpc Get (GetRequest) returns (FacilityResponse) {
+    option (google.api.http) = {
+      get: "/facilities/{facility_id}"
+    };
+  }
   //rpc GetAll (google.protobuf.Empty) returns (FacilitiesResponse) {}
 }
